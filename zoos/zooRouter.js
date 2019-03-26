@@ -37,6 +37,20 @@ router.get('/:id', (req, res) => {
         .catch( err => res.status(500).json(err));
 });
 
+//POST a new zoo
+router.post('/', (req, res) => {
+    db('zoos')
+        .insert(req.body)
+        .then( ids => {
+            const id = id[0];
+            db('zoos')
+            .where({ id })
+            .first()
+            .then( zoo => res.status(201).json(zoo))
+        })
+        .catch( err => res.status(500).json(err));
+});
+
 
 
 
