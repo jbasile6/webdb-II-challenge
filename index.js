@@ -1,6 +1,6 @@
 const server = require('./server');
 
-// endpoints here
+
 
 const port = 3300;
 server.listen(port, function() {
