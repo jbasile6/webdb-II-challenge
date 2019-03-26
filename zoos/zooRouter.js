@@ -51,6 +51,21 @@ router.post('/', (req, res) => {
         .catch( err => res.status(500).json(err));
 });
 
+//PUT edit zoo by id
+router.put('/:id', (req, res) => {
+    db('zoos')
+        .where({ id: req.params.id })
+        .update(req.body)
+        .then( count => {
+            if (count > 0) {
+                res.status(204).json(count)
+            } else {
+                res.status(404).json({ error: 'Zoo ID does not exist'})
+            }
+        })
+        .catch( err => res.status(500).json(err))
+})
+
 
 
 
